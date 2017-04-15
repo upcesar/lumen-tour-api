@@ -16,10 +16,18 @@ class CreateAttractionsAvailabilityTable extends Migration
         Schema::create('attr_availability', function(Blueprint $table)
         {
             $table->increments('id');
+            $table->unsignedInteger('attraction_id');
             $table->string('code');
             $table->string('name');
-            $table->decimal('servicePrice', 13, 2);
+            $table->string('contract');
+            $table->decimal('service_price', 13, 2);
             $table->timestamps();
+            
+            $table->foreign('attraction_id')
+                ->references('id')
+                ->on('attractions')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
@@ -30,6 +38,11 @@ class CreateAttractionsAvailabilityTable extends Migration
      */
     public function down()
     {
+        
+        Schema::table('attr_availability', function(Blueprint $table){
+            $table->dropForeign('attr_availability_attraction_id_foreign');
+        });
+        
         Schema::drop('attr_availability');
     }
 }

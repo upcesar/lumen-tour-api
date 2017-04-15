@@ -19,6 +19,12 @@ class CreateAttrAvailabOpDateTable extends Migration
             $table->date('attr_op_from');
             $table->date('attr_op_to');
             $table->timestamps();
+            
+            $table->foreign('attr_availability_id')
+                ->references('id')
+                ->on('attr_availability')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
@@ -28,7 +34,11 @@ class CreateAttrAvailabOpDateTable extends Migration
      * @return void
      */
     public function down()
-    {
+    {        
+        Schema::table('attr_operation_dates', function(Blueprint $table){
+            $table->dropForeign('attr_operation_dates_attr_availability_id_foreign');
+        });
+        
         Schema::drop('attr_operation_dates');
     }
 }

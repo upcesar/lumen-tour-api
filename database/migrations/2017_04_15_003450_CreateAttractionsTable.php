@@ -19,13 +19,18 @@ class CreateAttractionsTable extends Migration
             $table->increments('id');
             $table->string('destination');
             $table->string('code');
-            $table->unsignedInteger('att_cat_id');
+            $table->unsignedInteger('attr_cat_id');
             $table->string('name');
             $table->string('description');
             $table->string('imageThumbs');
-            $table->string('imageFull');            
-            
+            $table->string('imageFull');
             $table->timestamps();
+            
+            $table->foreign('attr_cat_id')
+                ->references('id')
+                ->on('attr_categories')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
@@ -36,6 +41,10 @@ class CreateAttractionsTable extends Migration
      */
     public function down()
     {
+        Schema::table('attractions', function(Blueprint $table){
+            $table->dropForeign('attractions_attr_cat_id_foreign');
+        });
+        
         Schema::drop('attractions');
     }
 }
