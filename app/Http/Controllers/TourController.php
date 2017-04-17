@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Attractions;
-use App\AttrCategories;
-use App\AttrOperationDates;
+use Illuminate\Http\Request;
 
 
 class TourController extends Controller
@@ -43,13 +42,29 @@ class TourController extends Controller
         return $data;
     }
     
-    public function index() {
+    public function search(Request $request) {
 
+        
         $tour_result = Attractions::with('category')
-                            ->with('availabilities')
-                            ->with('operation_dates')
+                            ->with(['availabilities' => function($query) use ($request){
+                                $query->where('iso_currency', $request->Currency);
+                            }])
+                            ->with(['operation_dates' => function($query) use ($request) {
+                                
+                                $dateFrom = date('Y-m-d', strtotime($request->DateFrom));
+                                $dateTo = date('Y-m-d', strtotime($request->DateTO));
+                                
+                                $query->whereBetween('attr_op_from', [$dateFrom, $dateTo]);
+                            }])
                             ->get();
         
+//        $tour_result = Attractions::with('category')
+//                            ->with('availabilities')
+//                            ->with('operation_dates')
+//                            ->get();
+        
+//        return $this->success($tour_result, 200);
+                            
         $fields_order = array('destination', 'code', 'classification', 'name', 'description', 'imageThumbs', 'imageFull', 'availableModality');
         
         $tour = array();
@@ -70,13 +85,11 @@ class TourController extends Controller
                 $row->$field = $t->$field;                
             }
             
-            $t = $this->removeFields($t);
-            
+            $t = $this->removeFields($t);            
             
             $tour[] = $row;
             
-        }
-        
+        }        
                 
         return $this->success($tour, 200);
     }
