@@ -11,9 +11,9 @@ class AttrAvailabilitySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('attr_availability')->truncate();
+        DB::table('attr_availabilities')->truncate();
 
-        DB::table('attr_availability')->insert([
+        DB::table('attr_availabilities')->insert([
             "attraction_id" => 1,
             "code" => "WDWBASENXT",
             "name" => "MCO",

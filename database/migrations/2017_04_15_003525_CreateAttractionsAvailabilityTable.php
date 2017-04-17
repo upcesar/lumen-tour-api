@@ -13,7 +13,7 @@ class CreateAttractionsAvailabilityTable extends Migration
      */
     public function up()
     {
-        Schema::create('attr_availability', function(Blueprint $table)
+        Schema::create('attr_availabilities', function(Blueprint $table)
         {
             $table->increments('id');
             $table->unsignedInteger('attraction_id');
@@ -40,10 +40,10 @@ class CreateAttractionsAvailabilityTable extends Migration
     public function down()
     {
         
-        Schema::table('attr_availability', function(Blueprint $table){
-            $table->dropForeign('attr_availability_attraction_id_foreign');
+        Schema::table('attr_availabilities', function(Blueprint $table){
+            $table->dropForeign('attr_availabilities_attraction_id_foreign');
         });
         
-        Schema::drop('attr_availability');
+        Schema::drop('attr_availabilities');
     }
 }

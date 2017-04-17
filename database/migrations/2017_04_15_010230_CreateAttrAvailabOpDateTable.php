@@ -22,7 +22,7 @@ class CreateAttrAvailabOpDateTable extends Migration
             
             $table->foreign('attr_availability_id')
                 ->references('id')
-                ->on('attr_availability')
+                ->on('attr_availabilities')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
