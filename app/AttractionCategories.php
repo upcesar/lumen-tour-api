@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class AttractionCategories extends Model
 {
      
-     protected $fillable = ['description', 'created_at', 'updated_at'];
+     protected $fillable = ['id', 'description'];
+     protected $hidden = ['created_at', 'updated_at'];
+     
+     public function attractions() {
+         return $this->hasMany('App\Attractions');
+     }
      
 }
