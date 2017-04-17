@@ -17,7 +17,7 @@ class AttrAvailabilitySeeder extends Seeder
             "attraction_id" => 1,
             "code" => "WDWBASENXT",
             "name" => "MCO",
-            "contract" => "MCO",
+            "contract" => "2015WDWEURTO",
             "iso_currency" => "USD",
             "service_price" => 656.08,
             "created_at" => date('Y-m-d H:i:s'),
