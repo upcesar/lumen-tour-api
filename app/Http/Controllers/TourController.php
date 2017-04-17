@@ -57,13 +57,7 @@ class TourController extends Controller
                                 $query->whereBetween('attr_op_from', [$dateFrom, $dateTo]);
                             }])
                             ->get();
-        
-//        $tour_result = Attractions::with('category')
-//                            ->with('availabilities')
-//                            ->with('operation_dates')
-//                            ->get();
-        
-//        return $this->success($tour_result, 200);
+
                             
         $fields_order = array('destination', 'code', 'classification', 'name', 'description', 'imageThumbs', 'imageFull', 'availableModality');
         
