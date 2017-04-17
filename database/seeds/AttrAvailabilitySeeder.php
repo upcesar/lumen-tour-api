@@ -15,8 +15,8 @@ class AttrAvailabilitySeeder extends Seeder
 
         DB::table('attr_availabilities')->insert([
             "attraction_id" => 1,
-            "code" => "WDWBASENXT",
-            "name" => "MCO",
+            "code" => "0#CNX09/19",
+            "name" => "3 Days",
             "contract" => "2015WDWEURTO",
             "iso_currency" => "USD",
             "service_price" => 656.08,
