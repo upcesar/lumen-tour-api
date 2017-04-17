@@ -16,7 +16,7 @@ class CreateAttractionsCatTable extends Migration
         Schema::create('attr_categories', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('description');
+            $table->string('description', 50);
             $table->timestamps();
         });
     }

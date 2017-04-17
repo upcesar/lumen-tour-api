@@ -18,6 +18,7 @@ class AttrAvailabilitySeeder extends Seeder
             "code" => "WDWBASENXT",
             "name" => "MCO",
             "contract" => "MCO",
+            "iso_currency" => "USD",
             "service_price" => 656.08,
             "created_at" => date('Y-m-d H:i:s'),
         ]);

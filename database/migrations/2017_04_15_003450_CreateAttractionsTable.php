@@ -17,10 +17,10 @@ class CreateAttractionsTable extends Migration
         Schema::create('attractions', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('destination');
-            $table->string('code');
+            $table->string('destination', 5);
+            $table->string('code', 10);
             $table->unsignedInteger('attr_cat_id');
-            $table->string('name');
+            $table->string('name', 50);
             $table->string('description');
             $table->string('imageThumbs');
             $table->string('imageFull');

@@ -17,9 +17,10 @@ class CreateAttractionsAvailabilityTable extends Migration
         {
             $table->increments('id');
             $table->unsignedInteger('attraction_id');
-            $table->string('code');
-            $table->string('name');
-            $table->string('contract');
+            $table->string('code', 15);
+            $table->string('name', 30);
+            $table->string('contract', 15);
+            $table->string('iso_currency', 3);
             $table->decimal('service_price', 13, 2);
             $table->timestamps();
             
