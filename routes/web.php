@@ -16,4 +16,5 @@ $app->get('/', function () use ($app) {
 });
 
 $app->post('/api/attractions/search', 'TourController@search');
+$app->post('/api/tickets/search', 'TicketsController@index');
 
